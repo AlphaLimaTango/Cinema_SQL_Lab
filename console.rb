@@ -53,5 +53,16 @@ ticket6 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film2.id})
 ticket7 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film3.id})
 ticket8 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film3.id})
 ticket9 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film3.id})
+
+ticket1.save
+ticket2.save
+ticket3.save
+ticket4.save
+ticket5.save
+ticket6.save
+ticket7.save
+ticket8.save
+ticket9.save
+
 # binding.pry
 # nil
