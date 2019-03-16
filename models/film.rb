@@ -52,6 +52,12 @@ class Film
     return customer_data.map { |hash| Customer.new(hash)  }
   end
 
+  #.map function
+  def map_item(data)
+    result = data.map { |film| Film.new(film)  }
+    return result
+  end
+
   #basic extensions
 
 end
