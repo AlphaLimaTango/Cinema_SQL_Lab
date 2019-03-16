@@ -52,4 +52,6 @@ class Customer
     film_data = SqlRunner.run(sql, values)
     return film_data.map { |hash| Film.new(hash)  }
   end
+
+#basic extensions
 end

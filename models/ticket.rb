@@ -40,5 +40,6 @@ class Ticket
     SqlRunner.run(sql)
   end
 
+#basic extensions
 
 end

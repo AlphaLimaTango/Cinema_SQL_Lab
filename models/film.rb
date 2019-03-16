@@ -50,5 +50,8 @@ class Film
     values = [@id]
     customer_data = SqlRunner.run(sql, values)
     return customer_data.map { |hash| Customer.new(hash)  }
-  end 
+  end
+
+  #basic extensions
+
 end
