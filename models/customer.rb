@@ -18,5 +18,9 @@ class Customer
     @id = customer['id'].to_i
   end
 
-
+  def self.show_all
+    sql = 'SELECT * FROM customers'
+    data = SqlRunner(sql)
+    return data.map { |hash| Customer.new(hash) }
+  end
 end

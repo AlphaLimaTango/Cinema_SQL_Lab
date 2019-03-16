@@ -12,9 +12,15 @@ class Film
 
   def save()
     sql = 'INSERT INTO films (title, price) VALUES ($1, $2) RETURNING id'
-
     values = [@title, @price]
     film = SqlRunner.run(sql, values).first
     @id = film['id'].to_i
+  end
+
+  def self.show_all
+    sql = 'SELECT * FROM films'
+    data = SqlRunner.run(sql)
+    return data.map { |hash| Film.new(hash) }
+
   end
 end
