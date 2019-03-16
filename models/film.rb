@@ -43,7 +43,7 @@ class Film
     sql = 'DELETE FROM films'
     SqlRunner.run(sql)
   end
-
+  
 #display customer data for film
   def customer
     sql = 'SELECT customers.* FROM customers INNER JOIN tickets ON customers.id = tickets.customer_id WHERE film_id = $1'

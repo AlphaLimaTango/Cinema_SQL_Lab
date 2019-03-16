@@ -58,7 +58,27 @@ class Customer
     result = data.map { |customer| Customer.new(customer)  }
     return result
   end
-  
+
 #basic extensions
+
+  # def buy_ticket(film)
+  #   sql = 'UPDATE customers SET funds = $1 WHERE id = $2'
+  #   remaining_funds = @funds - film['price']
+  #   values = [remaining_funds, @id]
+  #   SqlRunner.run(sql, values)
+  # end
+
+  def buy_ticket(film)
+    price = film.price
+    if @funds >= price
+      sql1 = ‘UPDATE customers SET funds = $1 WHERE id = $2;’
+      values1 = [(@funds - price)]
+      SqlRunner.run(sql1, values)
+
+      sql2 = ‘INSERT INTO tickets (customer_id, film_id) VALUES ($1, $2);’
+      values2 = [@id, film.id]
+      SqlRunner.run(sql2, values2)
+    end
+  end
 
 end

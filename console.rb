@@ -64,5 +64,6 @@ ticket7.save
 ticket8.save
 ticket9.save
 
+customer1.buy_ticket(@film3)
 # binding.pry
 # nil
