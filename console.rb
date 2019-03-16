@@ -2,7 +2,7 @@ require_relative('models/customer')
 require_relative('models/film')
 require_relative('models/ticket')
 
-requrie('pry-byebug')
+# require('pry-byebug')
 
 Ticket.delete_all
 Customer.delete_all
@@ -44,5 +44,8 @@ film3 = Film.new({
   })
 film3.save
 
-binding.pry
-nil
+ticket1 = Ticket.new({
+  ''
+  })
+# binding.pry
+# nil
