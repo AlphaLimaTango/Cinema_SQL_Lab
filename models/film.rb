@@ -43,7 +43,7 @@ class Film
     sql = 'DELETE FROM films'
     SqlRunner.run(sql)
   end
-  
+
 #display customer data for film
   def customer
     sql = 'SELECT customers.* FROM customers INNER JOIN tickets ON customers.id = tickets.customer_id WHERE film_id = $1'
@@ -59,5 +59,14 @@ class Film
   end
 
   #basic extensions
+
+#2 Check how many customers are going to watch a certain film
+  def how_many_customers_attending
+    sql = 'SELECT customers.* FROM customers INNER JOIN tickets ON customers.id = tickets.customer_id WHERE film_id = $1'
+    values = [@id]
+    customers_attending = SqlRunner.run(sql, values)
+    return customers_attending.map { |hash| Customer.new(hash)  }.count
+  end
+
 
 end

@@ -64,6 +64,10 @@ ticket7.save
 ticket8.save
 ticket9.save
 
-customer1.buy_ticket(@film3)
+# p customer1.films
+# p customer1.ticket_count
+p film1.how_many_customers_attending
+
+# customer1.buy_ticket(@film1)
 # binding.pry
 # nil

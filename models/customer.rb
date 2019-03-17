@@ -61,24 +61,32 @@ class Customer
 
 #basic extensions
 
+#1 Check how many tickets were bought by a customer
+  def ticket_count
+    sql = 'SELECT films.* FROM films INNER JOIN tickets ON films.id = tickets.film_id WHERE customer_id = $1'
+    values = [@id]
+    film_data = SqlRunner.run(sql, values).count
+    return film_data
+  end
+
   # def buy_ticket(film)
   #   sql = 'UPDATE customers SET funds = $1 WHERE id = $2'
   #   remaining_funds = @funds - film['price']
   #   values = [remaining_funds, @id]
   #   SqlRunner.run(sql, values)
   # end
-
-  def buy_ticket(film)
-    price = film.price
-    if @funds >= price
-      sql1 = ‘UPDATE customers SET funds = $1 WHERE id = $2;’
-      values1 = [(@funds - price)]
-      SqlRunner.run(sql1, values)
-
-      sql2 = ‘INSERT INTO tickets (customer_id, film_id) VALUES ($1, $2);’
-      values2 = [@id, film.id]
-      SqlRunner.run(sql2, values2)
-    end
-  end
+  #
+  # def buy_ticket(film)
+  #   price = film.price
+  #   if @funds >= price
+  #     sql1 = ‘UPDATE customers SET funds = $1 WHERE id = $2;’
+  #     values1 = [(@funds - price)]
+  #     SqlRunner.run(sql1, values)
+  #
+  #     sql2 = ‘INSERT INTO tickets (customer_id, film_id) VALUES ($1, $2);’
+  #     values2 = [@id, film.id]
+  #     SqlRunner.run(sql2, values2)
+  #   end
+  # end
 
 end
