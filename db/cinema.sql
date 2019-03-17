@@ -8,6 +8,11 @@ CREATE TABLE customers(
   funds INT4
 );
 
+-- CREATE TABLE screenings(
+--   id SERIAL4 PRIMARY KEY,
+--
+-- );
+
 CREATE TABLE films(
   id SERIAL4 PRIMARY KEY,
   title VARCHAR(255),

@@ -1,4 +1,6 @@
 require_relative("../db/sql_runner")
+require_relative('film')
+require_relative('ticket')
 
 
 class Customer
@@ -61,7 +63,7 @@ class Customer
 
 #basic extensions
 
-#1 Check how many tickets were bought by a customer
+#2 Check how many tickets were bought by a customer
   def ticket_count
     sql = 'SELECT films.* FROM films INNER JOIN tickets ON films.id = tickets.film_id WHERE customer_id = $1'
     values = [@id]
@@ -69,13 +71,25 @@ class Customer
     return film_data
   end
 
-  # def buy_ticket(film)
-  #   sql = 'UPDATE customers SET funds = $1 WHERE id = $2'
-  #   remaining_funds = @funds - film['price']
-  #   values = [remaining_funds, @id]
-  #   SqlRunner.run(sql, values)
-  # end
-  #
+#1 Buying tickets should decrease the funds of the customer by the price
+
+  def buy_ticket(film)
+    sql = 'UPDATE customers SET funds = $1 WHERE id = $2'
+    change_funds(film)
+    values = [change_funds(film), @id]
+    ticket_bought = SqlRunner.run(sql, values)
+    return ticket_bought
+  end
+
+  def show_funds
+    return "I have #{@funds} bucks"
+  end
+
+  def change_funds(film)
+    return @funds - film.get_film_price
+  end
+
+#######################Katharina's Code
   # def buy_ticket(film)
   #   price = film.price
   #   if @funds >= price
@@ -88,5 +102,6 @@ class Customer
   #     SqlRunner.run(sql2, values2)
   #   end
   # end
+#################################
 
 end

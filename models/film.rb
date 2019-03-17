@@ -1,4 +1,6 @@
 require_relative("../db/sql_runner")
+require_relative('customer')
+require_relative('ticket')
 
 class Film
   attr_reader :id
@@ -60,7 +62,7 @@ class Film
 
   #basic extensions
 
-#2 Check how many customers are going to watch a certain film
+#3 Check how many customers are going to watch a certain film
   def how_many_customers_attending
     sql = 'SELECT customers.* FROM customers INNER JOIN tickets ON customers.id = tickets.customer_id WHERE film_id = $1'
     values = [@id]
@@ -68,5 +70,9 @@ class Film
     return customers_attending.map { |hash| Customer.new(hash)  }.count
   end
 
+  #partly for #1 Buying tickets should decrease the funds of the customer by the price
 
+  def get_film_price
+    return @price
+  end
 end
