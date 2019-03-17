@@ -78,8 +78,16 @@ class Customer
     change_funds(film)
     values = [change_funds(film), @id]
     ticket_bought = SqlRunner.run(sql, values)
-    return ticket_bought
+    # return ticket_bought.map { |hash| Ticket.new(hash)  }
+    p ticket_bought
+    sql1 = 'INSERT INTO tickets (customer_id, film_id) VALUES ($1, $2) RETURNING id'
+    values = [@id, film.id]
+    ticket = SqlRunner.run(sql1, values).first
+    @id = ticket['id'].to_i
   end
+
+  #but I don't know how to go about actually creating a ticket for my ticket table :(
+  #omg i might have done it?????^^
 
   def show_funds
     return "I have #{@funds} bucks"
